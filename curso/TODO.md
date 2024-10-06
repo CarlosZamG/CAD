@@ -12,11 +12,13 @@
 
 - [] Codelet nested_03
 
-- [] Métricas de Rendimiento
+- [x] Métricas de Rendimiento
 
 - [ ] Punteros
 
-- [ ] Memoria (Teoría: Espacio de Direcciones, Fragmentación)
+- [ ] Memoria  
+        - [x] Espacio de Direcciones.
+        - [ ] Fragmentación
 
 - [ ] Instruction Pointer.
 
