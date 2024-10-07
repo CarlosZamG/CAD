@@ -3,6 +3,27 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
+/*
+Comando para generar el ejecutable:
+
+gcc memory_03.c -o memory_03
+
+Salida:
+
+Dirección del código: 0x55a2142471e9
+Dirección del Stack: 0x7ffcb80b97c0 | Valor de n: 23
+Dirección del Heap: 0x55a21596d6b0
+Dirección del código: 0x55a2142471e9
+Dirección del Stack: 0x7ffcb80b97c0 | Valor de n: 17
+Dirección del Heap: 0x55a21596d6b0
+Valor de n: 17
+Valor de n: 23
+Valor de n: 23
+Valor de n: 17
+
+*/
+
+
 int main(){
 
     int id = fork();
