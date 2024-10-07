@@ -10,12 +10,12 @@ int main()
     for(int i = 0; i<10; i++)
     {
         ar[i] = -(i+1);
-        printf("\n%d %d %p %p", ar[i], *(ar+i), ar+i, &ar[i]);
+        printf("\n ar[%d]: %d | *(ar+%d): %d | ar+%d: %p | &ar[%d]: %p", i, ar[i], i, *(ar+i), i, ar+i, i, &ar[i]);
     }
     
     p = ar;
     
-    printf("\n\n%d %p\n", *((int *)p), p);
+    printf("\n\n *((int *)p): %d | p: %p\n", *((int *)p), p);
     
     return 0;
 }
