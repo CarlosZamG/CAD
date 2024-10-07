@@ -8,11 +8,11 @@ int main(){
     int *p;
     p = b;
 
-    printf("El resultado de p*a es: %d\n", (int)p*a);
     printf("La variable a con valor %d vive en %p\n", a, &a);
     printf("La variable b con valor %d vive en %p\n", b, &b);
     printf("La variable c con valor %d vive en %p\n", c, &c);
     printf("La variable p con valor %d vive en %p\n", p, &p);
+    printf("El resultado de p*a es: %d\n", (int)p*a);
     
     
     printf("sizeof(int): %ld\n",sizeof(int));
