@@ -1,5 +1,30 @@
 #include <stdio.h>
 
+/*
+Comando para generar el ejecutable:
+
+gcc pointers_01.c -o pointers_01
+
+(tiene advertencias)
+
+Salida:
+
+La variable a con valor 3 vive en 0x7fff7c850e44
+La variable b con valor 10 vive en 0x7fff7c850e48
+La variable c con valor 3 vive en 0x7fff7c850e4c
+La variable p con valor 10 vive en 0x7fff7c850e50
+El resultado de p*a es: 30
+sizeof(int): 4
+sizeof(float): 4
+sizeof(double): 8
+sizeof(char): 1
+sizeof(int *): 8
+sizeof(float *): 8
+sizeof(double *): 8
+sizeof(char *): 8
+
+*/
+
 int main(){
 
     int a = 3;
