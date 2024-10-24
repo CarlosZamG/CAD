@@ -10,7 +10,9 @@
 
 - [x] Codelet nested_02
 
-- [] Codelet nested_03
+- [ ] Codelet nested_03
+
+- [ ] Tasks
 
 - [x] Métricas de Rendimiento
 
