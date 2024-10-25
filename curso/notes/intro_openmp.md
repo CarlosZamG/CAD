@@ -1,6 +1,6 @@
 # Introducción a OpenMP
 
-**OpenMP** (**Open M**ulti-**P**rocessing) es una **interfaz** de programación de aplicaciones (***API***) que permite convertir programas secuenciales en paralelo utilizando **hilos**, enfocado en **memoria compartida**. El término interfaz nos indica OpenMP especifica el **qué** es lo que se tiene que hacer, sin embargo pueden haber distintas implementaciones de OpenMP que varien en el **cómo**.
+**OpenMP** (**Open M**ulti-**P**rocessing) es una **interfaz** de programación de aplicaciones (***API***) que permite convertir programas secuenciales en paralelo utilizando **hilos**, enfocado en **memoria compartida**. El término interfaz nos indica que OpenMP especifica el **qué** es lo que se tiene que hacer, sin embargo pueden haber distintas implementaciones de OpenMP que varien en el **cómo**.
 
 Al usar OpenMP, el **compilador es responsable** de lidiar con los detalles *engorrosos* de la generación, inicialización y finalización de hilos; debido a esto, se dice que al usar OpenMP estamos haciendo paralelismo **implícito**. La desventaja es que se sacrifica el control del programador para darle comodidad.
 
