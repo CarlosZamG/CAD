@@ -1,4 +1,6 @@
-- [ ] Intro OpenMP
+- [x] Intro OpenMP
+
+- [ ] Variables en OpenMP
 
 - [ ] Paralelismo anidado.
 
