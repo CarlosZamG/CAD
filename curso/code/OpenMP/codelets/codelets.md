@@ -81,7 +81,7 @@ int main(){
 <details>
 <summary>Respuesta</summary>
 <b>`Hola Mundo desde el hilo 0` 4 veces.</b>
-<p>Esto debido a que por defecto el <em>paralelismo anidado</em> está deshabilitado en OpenMP. Así que falla en la en lanzmineto de nuevos hilos. Sin embargo, al anidar una segunda construcción paralela, cada hilo se ve así mismo como el hilo maestro, por lo que cada uno imprime su <em>`id`</em> igual a 0</p>
+<p>Esto debido a que por defecto el <em>paralelismo anidado</em> está deshabilitado en OpenMP. Así que falla en la en lanzamiento de nuevos hilos. Sin embargo, al anidar una segunda construcción paralela, cada hilo se ve así mismo como el hilo maestro, por lo que cada uno imprime su <em>`id`</em> igual a 0</p>
 </details>
 
 4. ¿Cuál es la salida del siguiente código?
