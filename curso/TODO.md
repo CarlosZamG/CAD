@@ -12,7 +12,7 @@
 
 - [x] Codelet nested_02
 
-- [ ] Codelet nested_03
+- [x] Codelet nested_03
 
 - [ ] Tasks
 
