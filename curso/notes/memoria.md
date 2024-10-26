@@ -30,4 +30,4 @@ Dirección del Stack: 0x7fff4a0df7c4
 Dirección del Heap: 0x55759bff16b0
 ```
 
-Podemos ver que el valor numérico hexadecimal de la dirección del código es menor que el correspondiente a la dirección del *Heap* que a su vez es menor que el correspondiente a la dirección del *Stack*. Sin embargo siempre debemos tener en mente que cualquier dirección vista desde el punto de vista del programador de C son direcciones **virtuales**. Solamente el sistmema operativo y el hardware conocen en qué parte de la memoria **física** se encuentran las instrucciones y los datos.  
+Podemos ver que el valor numérico hexadecimal de la dirección del código es menor que el correspondiente a la dirección del *Heap* que a su vez es menor que el correspondiente a la dirección del *Stack*. Sin embargo siempre debemos tener en mente que cualquier dirección vista desde el punto de vista del programador de C son direcciones **virtuales**. Solamente el sistema operativo y el hardware conocen en qué parte de la memoria **física** se encuentran las instrucciones y los datos.  
