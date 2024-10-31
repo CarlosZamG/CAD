@@ -20,11 +20,13 @@
 
 - [ ] Punteros
 
-- [ ] Memoria
+_____
+- [ ] **Memoria**
 
-        - [x] Espacio de Direcciones.
-        
-        - [ ] Fragmentación
+- [x] Espacio de Direcciones.
+
+- [ ] Fragmentación
+_____
 
 - [ ] Instruction Pointer.
 
