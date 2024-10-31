@@ -1,3 +1,7 @@
+# To Do
+
+#### OpenMP
+
 - [x] Intro OpenMP
 
 - [ ] Variables en OpenMP
@@ -6,22 +10,20 @@
 
 - [ ] Bucles `for`
 
-- [x] Codelet hello_bad
-
-- [x] Codelet nested_01
-
-- [x] Codelet nested_02
-
-- [x] Codelet nested_03
-
 - [ ] Tasks
+
+#### Paralelismo
 
 - [x] Métricas de Rendimiento
 
+#### Otros
+
 - [ ] Punteros
 
-- [ ] Memoria  
+- [ ] Memoria
+
         - [x] Espacio de Direcciones.
+        
         - [ ] Fragmentación
 
 - [ ] Instruction Pointer.
