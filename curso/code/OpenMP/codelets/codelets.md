@@ -1,3 +1,5 @@
+# Preguntas tipo Quiz
+
 1. ¿Cuál es la salida del siguiente código?
 
 ```c
