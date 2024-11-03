@@ -4,7 +4,7 @@
 /*
 Comando para crear el ejecutable:
 
-gcc nested_02.c -o nested_02 -fopenmp
+gcc bad_nested_02.c -o bad_nested_02 -fopenmp
 
 Salida:
 Hola Mundo desde el hilo 0
