@@ -4,28 +4,32 @@
 
 - [x] Intro OpenMP
 
-- [ ] Variables en OpenMP
+- [ ] Variables en OpenMP.
 
-- [ ] Paralelismo anidado.
-
-- [ ] Bucles `for`
-
+- [x] Paralelismo anidado.
+_____
+- [ ] Bucles `for`.
+- [ ] Intro `parallel for`.
+- [x] *Schedule*.
+- [ ] Bucles anidados.
+- [ ] `ordered`
+_____
 - [ ] Tasks
 
 #### Paralelismo
 
-- [x] Métricas de Rendimiento
+- [x] Métricas de Rendimiento.
 
 #### Otros
 
-- [ ] Punteros
+- [ ] Punteros.
 
 _____
 - [ ] **Memoria**
 
 - [x] Espacio de Direcciones.
 
-- [ ] Fragmentación
+- [ ] Fragmentación.
 _____
 
 - [ ] Instruction Pointer.
