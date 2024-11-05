@@ -11,7 +11,7 @@ _____
 - [ ] Bucles `for`.
 - [x] Intro `parallel for`.
 - [x] *Schedule*.
-- [ ] Bucles anidados.
+- [x] Bucles anidados.
 - [ ] `ordered`
 _____
 - [ ] Tasks
