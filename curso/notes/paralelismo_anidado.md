@@ -30,8 +30,40 @@ Hola Mundo
 Hola Mundo
 Hola Mundo
 ```
+Hagamos unas modificaciones al código:
 
-Esto debido a que por defecto el paralelismo anidado está deshabilitado en OpenMP, para poder habilitar el paralelismo anidado tenemos que hacer uso de la función `omp_set_nested()` de la siguiente manera:
+```c
+#include <stdio.h>
+#include <omp.h>
+
+int main(){
+
+    #pragma omp parallel num_threads(4)
+    {
+        #pragma omp parallel num_threads(4)
+        {
+            printf("Hola Mundo desde el hilo %d\n", omp_get_thread_num());
+        }
+    }
+
+}
+```
+El código tiene la siguiente salida:
+
+```sh
+Hola Mundo desde el hilo 0
+Hola Mundo desde el hilo 0
+Hola Mundo desde el hilo 0
+Hola Mundo desde el hilo 0
+```
+
+
+
+Esto debido a que por defecto el paralelismo anidado está deshabilitado en OpenMP. Entonces tenemos que cada hilo está ejecutando la impresión en consola y como tenemos 4 hilos, la impresión se realiza 4 veces. Ahora una cuestión importante es **¿Por qué todos los hilos nos muestran un ID igual a 0?**. La interfaz de OpenMP nos dice lo siguiente: *Cuando cualquier hilo encuentra una construcción paralela, el hilo crea un equipo de sí mismo y cero o más hilos adicionales y se convierte en el **maestro** del nuevo equipo.* Además también podemos leer lo siguiente: *El hilo maestro es el hilo que encuentra una construcción paralela, crea un equipo y ejecuta el código de esa región como hilo número 0.*
+
+Es decir, al momento de que hilo inicial encuentra la construcción paralela exterior, se crea un equipo con ese hilo (es el hilo maestro) y 3 hilos adicionales para entrar a una región paralela. Entonces cada hilo se encuentra con una región paralela y crea un equipo (que lo incluye a sí mismo como el hilo maestro) para entrar a ejecutar la región paralela interior. Sin embargo, al tener deshabilitado el paralelismo anidado, cada uno de esos equipos consta de un único hilo.
+
+Para poder habilitar el paralelismo anidado tenemos que hacer uso de la función `omp_set_nested()` de la siguiente manera:
 
 ```c
 #include <stdio.h>
