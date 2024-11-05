@@ -9,7 +9,7 @@
 - [x] Paralelismo anidado.
 _____
 - [ ] Bucles `for`.
-- [ ] Intro `parallel for`.
+- [x] Intro `parallel for`.
 - [x] *Schedule*.
 - [ ] Bucles anidados.
 - [ ] `ordered`

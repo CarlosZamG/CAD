@@ -159,6 +159,57 @@ for(...){
 }
 ```
 
+Algo importante que debemos notar es que cada que utilicemos `#pragma omp parallel for`, al momento de ejecutar el código se tomará como una construcción paralela, por lo que si consideramos el siguiente código:
+
+```c
+#include <stdio.h>
+#include <omp.h>
+
+int main(){
+    
+    int n = 5;
+
+    omp_set_num_threads(4);
+
+    #pragma omp parallel default(none) shared(n)
+    {
+        #pragma omp parallel for
+        for (int i = 0; i < n; i++)
+        {
+            printf("El hilo %d está haciendo la iteración %d\n", omp_get_thread_num(), i);
+        }
+    }
+}
+```
+Es como si estuvieramos trabajando con paralelismo anidado, por lo que tendremos una salida similar a la siguiente:
+
+```
+El hilo 0 está haciendo la iteración 0
+El hilo 0 está haciendo la iteración 1
+El hilo 0 está haciendo la iteración 0
+El hilo 0 está haciendo la iteración 1
+El hilo 0 está haciendo la iteración 2
+El hilo 0 está haciendo la iteración 3
+El hilo 0 está haciendo la iteración 4
+El hilo 0 está haciendo la iteración 0
+El hilo 0 está haciendo la iteración 1
+El hilo 0 está haciendo la iteración 2
+El hilo 0 está haciendo la iteración 3
+El hilo 0 está haciendo la iteración 4
+El hilo 0 está haciendo la iteración 2
+El hilo 0 está haciendo la iteración 3
+El hilo 0 está haciendo la iteración 4
+El hilo 0 está haciendo la iteración 0
+El hilo 0 está haciendo la iteración 1
+El hilo 0 está haciendo la iteración 2
+El hilo 0 está haciendo la iteración 3
+El hilo 0 está haciendo la iteración 4
+```
+
+Lo que sucede es que primero estamos lanzando 4 hilos para que ejecuten una región paralela, cada uno de esos 4 hilos se encuentra con una 2da región paralela, por lo que crea su propio equipo para ejecutarla. Dicho equipo lo incluye a sí mismo como el hilo **maestro**, es decir que tiene **ID** igual a 0. Sin embargo, debido a que por defecto el paralelismo anidado está deshabilitado en OpenMP, todos los equipos que crean cada uno de los hilos para esa 2da región paralela constan de un único hilo que se ve así mismo como el hilo **maestro** por esta razón, todas las iteraciones indican que son realizadas por el hilo `0` 
+
+## Schedule
+
 La forma en la que OpenMP asigna las iteraciones que corresponden a cada hilo puede hacerse de diferentes formas, esto debido a que la forma en la que se reparten las iteraciones puede afectar el rendimiento. Para especificar una forma específica de repartir iteraciones ocupamos la cláusula `schedule`. En caso de no especificar dicha cláusula, el compilador elige entre los diferentes tipos de esquemas. Todos los esquemas pueden tener un parámetro llamado `chunk_size`. Tales esquemas son los siguientes:
 
 - `static`: En este esquema se dividen las iteraciones del bucle en grupos del tamaño de `chunk_size` y cada grupo es asignado a los hilos de forma rotatoria según el identificador del hilo.
