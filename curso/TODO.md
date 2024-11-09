@@ -8,11 +8,11 @@
 
 - [x] Paralelismo anidado.
 _____
-- [ ] Bucles `for`.
+- [x] Bucles `for`.
 - [x] Intro `parallel for`.
 - [x] *Schedule*.
 - [x] Bucles anidados.
-- [ ] `ordered`
+- [x] `ordered`
 _____
 - [ ] Tasks
 

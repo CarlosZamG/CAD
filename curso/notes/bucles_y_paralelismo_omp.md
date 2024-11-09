@@ -218,5 +218,51 @@ La forma en la que OpenMP asigna las iteraciones que corresponden a cada hilo pu
 
 - `guided`: Supongamos que el número de hilos es igual a $p$. El esquema guiado intenta ofrecer flexibilidad mediante el uso de grupos de tamaño variable que se reducen con el tiempo para permitir el equilibrio de carga. El tamaño del grupo que se entrega en cada nueva solicitud es igual a la cantidad de iteraciones sin asignar dividida por $p$. El `chunk_size` especifica un límite inferior para el tamaño de un grupo. Si no se especifica `chunk_size`, el valor predeterminado es 1. Los tamaños de los grupos se pueden determinar mediante la fórmula:
 
-$$\text{tam\_grupo} = \min(\text{iteraciones\_restantes}, \max(\text{chunk\_size}, \lceil{\frac{\text{iteraciones\_restantes}}{p}})) 
+$$\text{tam\_grupo} = \min(\text{iteraciones\_restantes}, \max(\text{chunk\_size}, \lceil{\frac{\text{iteraciones\_restantes}}{p}\rceil})) 
 $$
+
+## `ordered`
+
+Podemos usar la construcción `ordered` para garantizar que una parte de un bucle en paralelo se ejecutará de la misma forma que un bucle serial:
+
+```c
+#include <stdio.h>
+#include <omp.h>
+
+int main()
+{
+
+    #pragma omp parallel for ordered
+    for (int i = 1; i <= 8; i++)
+    {
+        printf("El hilo %d está ejecutando la iteración %d sin orden\n", omp_get_thread_num(), i);
+        #pragma omp ordered
+        printf("El hilo %d está ejecutando la iteración %d \n", omp_get_thread_num(), i);
+    }
+
+    return 0;
+}
+```
+
+Al generar el ejecutable obtendremos una salida similar a la siguiente:
+
+```sh
+El hilo 1 está ejecutando la iteración 2 sin orden
+El hilo 0 está ejecutando la iteración 1 sin orden
+El hilo 0 está ejecutando la iteración 1
+El hilo 1 está ejecutando la iteración 2
+El hilo 5 está ejecutando la iteración 6 sin orden
+El hilo 6 está ejecutando la iteración 7 sin orden
+El hilo 4 está ejecutando la iteración 5 sin orden
+El hilo 3 está ejecutando la iteración 4 sin orden
+El hilo 2 está ejecutando la iteración 3 sin orden
+El hilo 2 está ejecutando la iteración 3
+El hilo 3 está ejecutando la iteración 4
+El hilo 4 está ejecutando la iteración 5
+El hilo 5 está ejecutando la iteración 6
+El hilo 6 está ejecutando la iteración 7
+El hilo 7 está ejecutando la iteración 8 sin orden
+El hilo 7 está ejecutando la iteración 8
+```
+
+Podemos notar que el código dentro de la construcción `ordered` se ejecuta en serial, es decir, en el orden de un bucle normal.
