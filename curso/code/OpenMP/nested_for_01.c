@@ -37,6 +37,12 @@ Hola desde el hilo 1 en la iteración (4, 2)
 for serial
     for paralelo
 
+La primera variable se ejecuta en orden debido a que corresponde al for en serial, mientras que el orden la 2da
+variable es no determinista ya que se ejecuta en paralelo y los hilos compiten por la pantalla.
+
+En cada iteración del for serial (el 1er for) se están creado regiones paralelas que ejecutan el for en paralelo
+(2do for).
+
 */
 
 int main(){

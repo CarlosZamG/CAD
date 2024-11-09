@@ -33,8 +33,17 @@ Hola desde el hilo 3 en la iteración (4, 4)
 Hola desde el hilo 0 en la iteración (1, 2)
 Hola desde el hilo 0 en la iteración (1, 3)
 Hola desde el hilo 0 en la iteración (1, 4)
+
 for paralelo
     for serial
+
+El orden de la primera variable es no determinista debido a que corresponde al bucle en paralelo y los
+hilos compiten por la pantalla, mientras que las iteraciones de la 2da variable van en orden porque 
+corresponden a bucle en serial.
+
+El 1er for se ejecuta en paralelo, es decir que se reparten sus iteraciones entre todos los hilos.
+Y cada una de esas iteraciones (cada una hechas por un único hilo) se enacargan de hacer un bucle en
+serial (el 2do for).
 
 */
 

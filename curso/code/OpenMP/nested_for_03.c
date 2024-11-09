@@ -35,7 +35,13 @@ Hola desde el hilo (0, 0) en la iteración (1, 1)
 Hola desde el hilo (0, 1) en la iteración (1, 2)
 
 for paralelo
-    for paralelo
+    for paralelo 
+
+(Con regiones paralelas anidadas)
+
+Primero se lanza una región paralela para ejecutar un bucle for en paralelo.
+Cada una iteración del bucle for debe lanzar una región paralela anidada que ejecuta el 
+2do for en paralelo.
 
 */
 
