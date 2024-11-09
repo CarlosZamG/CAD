@@ -11,12 +11,26 @@ _____
 - [ ] Bucles `for`.
 - [x] Intro `parallel for`.
 - [x] *Schedule*.
-- [] Bucles anidados.
+- [x] Bucles anidados.
 - [ ] `ordered`
 _____
 - [ ] Tasks
 
 - [ ] Locks
+
+- [ ] Construcciones anidadas
+
+#### MPI
+
+- [] Intro MPI
+
+- [] Gather
+
+- [] Scatter
+
+- [] Buffer
+
+- [] Reduce
 
 #### Paralelismo
 
