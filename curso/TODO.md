@@ -22,15 +22,15 @@ _____
 
 #### MPI
 
-- [] Intro MPI
+- [ ] Intro MPI
 
-- [] Gather
+- [ ] Gather
 
-- [] Scatter
+- [ ] Scatter
 
-- [] Buffer
+- [ ] Buffer
 
-- [] Reduce
+- [ ] Reduce
 
 #### Paralelismo
 
