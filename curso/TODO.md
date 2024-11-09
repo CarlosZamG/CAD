@@ -11,10 +11,12 @@ _____
 - [ ] Bucles `for`.
 - [x] Intro `parallel for`.
 - [x] *Schedule*.
-- [x] Bucles anidados.
+- [] Bucles anidados.
 - [ ] `ordered`
 _____
 - [ ] Tasks
+
+- [ ] Locks
 
 #### Paralelismo
 
