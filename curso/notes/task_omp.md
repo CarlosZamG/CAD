@@ -8,7 +8,7 @@ Podemos usar la construcción `task` para crear tareas **explícitas**. Cuando u
 
 - La tarea puede ser delegada a otro de los hilos del equipo.
 
-Una de las principales ventajas de las tareas es que sosportan el **paralelismo desestructurado**, es decir, nos permiten paralelizar cosas como **bucles sin límites claros** o **funciones recursivas**.
+Una de las principales ventajas de las tareas es que soportan el **paralelismo desestructurado**, es decir, nos permiten paralelizar cosas como **bucles sin límites claros** o **funciones recursivas**.
 
 ## Fibonacci en paralelo con OpenMP
 
