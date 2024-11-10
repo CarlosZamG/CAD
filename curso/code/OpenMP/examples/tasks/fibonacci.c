@@ -84,12 +84,12 @@ int fib(int n)
 {
     printf("\nHilo %d calculando fib(%d)", omp_get_thread_num(), n);
     int i, j;
-    
+
     if (n < 2)
         return n;
     else 
     {
-        
+
         #pragma omp task shared(i)
             i = fib(n - 1);
         #pragma omp task shared(j)
@@ -102,10 +102,10 @@ int fib(int n)
 
 int main(int argc, char **argv)
 {
-    
+
     int n = 8;
     int result;
-    
+
     #pragma omp parallel
     {
         #pragma omp single
