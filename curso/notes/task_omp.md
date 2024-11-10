@@ -8,6 +8,39 @@ Podemos usar la construcción `task` para crear tareas **explícitas**. Cuando u
 
 - La tarea puede ser delegada a otro de los hilos del equipo.
 
+Veamos ejemplos usando tareas explícitas:
+
+```c
+#include <stdio.h>
+#include <omp.h>
+#include <unistd.h>
+
+int main()
+{
+
+    #pragma omp parallel num_threads(4)
+    {
+        #pragma omp task
+        {
+            printf("Hilo %d haciendo tarea 1\n", omp_get_thread_num());
+        }
+    }
+
+    printf("\n\n");
+}
+```
+Debido a que estamos creando un equipo de 4 hilos y cada hilo encuentra una construcción `#pragma omp task`, se lanzan 4 tareas que serán ejecutadas por el equipo de hilos, sin embargo, no necesariamente se asignará una tarea a cada uno de los hilos, puede ser que un hilo se encargue de realizar dos o más tareas, tal como podemos ver en la siguiente ejecución:
+
+```sh
+Hilo 3 haciendo tarea 1
+Hilo 1 haciendo tarea 1
+Hilo 0 haciendo tarea 1
+Hilo 3 haciendo tarea 1
+
+
+```
+
+
 Una de las principales ventajas de las tareas es que soportan el **paralelismo desestructurado**, es decir, nos permiten paralelizar cosas como **bucles sin límites claros** o **funciones recursivas**.
 
 ## Fibonacci en paralelo con OpenMP
@@ -164,3 +197,97 @@ Sabemos que una llamada a la función recursiva del problema de *Fibonacci* que 
     }
 }
 ```
+
+Veamos un ejemplo en código:
+
+```c
+#include <stdio.h>
+#include <omp.h>
+#include <unistd.h>
+
+
+int main()
+{
+
+    #pragma omp parallel num_threads(4)
+    {
+        #pragma omp task
+        {
+            #pragma omp task
+            {
+                printf("Hilo %d haciendo tarea 1\n", omp_get_thread_num());
+            }
+
+            #pragma omp task
+            {
+                printf("Hilo %d haciendo tarea 2\n", omp_get_thread_num());
+                
+                #pragma omp task
+                {
+                    sleep(2);
+                    printf("Hilo %d haciendo tarea 2.1\n", omp_get_thread_num());
+                }
+
+                #pragma omp task
+                {
+                    sleep(2);
+                    printf("Hilo %d haciendo tarea 2.2\n", omp_get_thread_num());
+                }
+            }
+
+            #pragma omp taskwait
+            printf("Ya esperé\n");
+        }
+    }
+
+    printf("\n\n");
+}
+```
+
+La salida puede ser similar a la siguiente:
+
+```sh
+Hilo 2 haciendo tarea 2
+Hilo 2 haciendo tarea 1
+Ya esperé
+Hilo 2 haciendo tarea 2
+Hilo 2 haciendo tarea 1
+Ya esperé
+Hilo 2 haciendo tarea 1
+Hilo 3 haciendo tarea 2
+Ya esperé
+Hilo 0 haciendo tarea 2
+Hilo 1 haciendo tarea 1
+Ya esperé
+Hilo 2 haciendo tarea 2.1
+Hilo 3 haciendo tarea 2.2
+Hilo 1 haciendo tarea 2.1
+Hilo 0 haciendo tarea 2.2
+Hilo 2 haciendo tarea 2.1
+Hilo 3 haciendo tarea 2.2
+Hilo 0 haciendo tarea 2.2
+Hilo 1 haciendo tarea 2.1
+
+
+```
+Podemos notar que el mensaje `Ya esperé` sale después de que se realizan las tareas `1` y `2` debido a que son las tareas hijas directas de la tarea actual, sin embargo, no espera a las tareas `2.1` ni `2.2`.
+
+### Entorno de datos al trabajar con tareas
+
+Al momento de trabajar con tareas, las variables pueden ser compartidas, privadas o `firstprivate` respecto a una tarea, muy parecido al manejo de variables en otras construcciones de OpenMP. Aquí una lista de las diferencias que tiene respecto al manejo de variables con hilos:
+
+- El entorno de datos corresponde a la tarea, **no** al hilo que encuentra a la tarea.
+
+- Si una variable es compartida dentro de una construcción `task`, las referencia a ella son al mismo espacio de direcciones de esta variable compartida cuando la tarea fue encontrada.
+
+- Si una variable aparece en la cláusula `private` de una construcción `task`, las referencias a ella dentro de la construcción son a un almacenamiento nuevo y sin inicializar que se crea cuando se encuentra a la tarea.
+
+- Si una variable aparece en la cláusula `firstprivate` de una construcción `task`, las referencias a ella dentro de la construcción son a un almacenamiento nuevo que se inicializa con el valor que tenía la variable al momento de encontyrar la tarea.
+
+Los comportamientos por defecto son los siguientes:
+
+- Las variables que son privadas cuando se encuentra una construcción `task` se manejan como `firstprivate` por defecto.
+
+- Las variables que son compartidas cuando se encuentra una construcción `task` se manejan como compartidas por defecto.
+
+Por esta razón debemos indicar que las variables `i` y `j` son compartidas para sus respectivas tareas en nuestra función recursiva que usa tareas, ya que por defecto serán privadas, entonces el valor calculado al momento de hacer las tareas se perderá al momento de hacer el retorno.
