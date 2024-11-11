@@ -14,11 +14,13 @@ _____
 - [x] Bucles anidados.
 - [x] `ordered`
 _____
-- [ ] Tasks
+- [x] Tasks
 
 - [ ] Locks
 
 - [ ] Construcciones anidadas
+
+- [ ] Directivas de sincronización
 
 #### MPI
 
