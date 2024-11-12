@@ -1,9 +1,31 @@
 #include <mpi.h>
 #include <stdio.h>
 
+/*
+Comando para generar el ejecutable:
+
+mpicc hello_world.c -o hello_world -Wall
+
+Comando para correrlo:
+
+mpirun ./hello_world
+
+Posible salida:
+
+Hola mundo desde el proceso DESKTOP-TLLMVTS, ID 5 de un total de 8 procesos
+Hola mundo desde el proceso DESKTOP-TLLMVTS, ID 6 de un total de 8 procesos
+Hola mundo desde el proceso DESKTOP-TLLMVTS, ID 4 de un total de 8 procesos
+Hola mundo desde el proceso DESKTOP-TLLMVTS, ID 0 de un total de 8 procesos
+Hola mundo desde el proceso DESKTOP-TLLMVTS, ID 1 de un total de 8 procesos
+Hola mundo desde el proceso DESKTOP-TLLMVTS, ID 2 de un total de 8 procesos
+Hola mundo desde el proceso DESKTOP-TLLMVTS, ID 7 de un total de 8 procesos
+Hola mundo desde el proceso DESKTOP-TLLMVTS, ID 3 de un total de 8 procesos
+
+*/
+
 int main(int argc, char** argv) {
     // Inicializamos el entorno de MPI
-    MPI_Init(NULL, NULL);
+    MPI_Init(&argc, &argv);
 
     // Obtenemos el número de procesos
     int world_size;
