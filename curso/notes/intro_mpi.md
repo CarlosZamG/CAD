@@ -1,6 +1,6 @@
 # Introducción a MPI
 
-MPI es un estándar utilizado para la programación paralelela mediante el paso de mensajes. El modelo de programación paralela mediante el paso de mensajes se utiliza en computadoras 
+MPI es un estándar utilizado para la programación paralelela mediante el paso de mensajes. El modelo de programación paralela mediante el paso de mensajes se utiliza en computadoras de memoria distribuida (por ejemplo, *clusters*). En este caso las tareas del programa paralelo son asignadas a procesos los cuales se ejecutan en procesadores con espacios de memoria disjuntos. MPI se basa en extender un lenguaje como C o Fortran mediante en funciones de biblioteca.
 
 Consideremos el siguiente código:
 ```c
@@ -70,4 +70,21 @@ Por último, tenemos que llamar a la función `MPI_Finalize()`, que se encarga d
 
 Para compilar nuestro programa podemos usar el comando `mpicc hello_world.c -o hello_world -Wall` y para correrlo podemos usar `mpirun ./hello_world`.
 
+Así obtendremos la siguiente salida:
+
+```sh
+Hola mundo desde el proceso DESKTOP-TLLMVTS, ID 5 de un total de 8 procesos
+Hola mundo desde el proceso DESKTOP-TLLMVTS, ID 6 de un total de 8 procesos
+Hola mundo desde el proceso DESKTOP-TLLMVTS, ID 4 de un total de 8 procesos
+Hola mundo desde el proceso DESKTOP-TLLMVTS, ID 0 de un total de 8 procesos
+Hola mundo desde el proceso DESKTOP-TLLMVTS, ID 1 de un total de 8 procesos
+Hola mundo desde el proceso DESKTOP-TLLMVTS, ID 2 de un total de 8 procesos
+Hola mundo desde el proceso DESKTOP-TLLMVTS, ID 7 de un total de 8 procesos
+Hola mundo desde el proceso DESKTOP-TLLMVTS, ID 3 de un total de 8 procesos
+```
+
 ## Paso de mensajes
+
+Dos conceptos muy importantes al momento de trabajar con MPI son el **envío** y **recepción** de mensajes. Casi cada función de MPI puede implementarse con envío y recepción simple de mensajes.
+
+El envío y paso de mensajes en MPI funciona de la siguiente manera: Un proceso **A** decide enviar un mensaje con datos a un proceso **B**, entonces el proceso A tiene que empaquetar esos datos en un ***buffer*** para el proceso B. Una vez que los datos están empaquetados, usamos `MPI_Send()` y el dispositivo de comunicación es responsable de enviar el mensaje al proceso B. A pesar de que el mensaje sea enviando a B, el proceso B debe ser saber que va a recibir datos de A, por lo que se usa `MPI_Recv()`. Una vez que se completa la recepción del mensaje, el proceso A puede continuar trabajando
